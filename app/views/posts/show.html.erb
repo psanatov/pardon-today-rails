@@ -10,15 +10,9 @@
   <%= @post.body %>
 </p>
 
-<p>
-  <strong>Upvotes:</strong>
-  <%= @post.upvotes %>
-</p>
-
-<p>
-  <strong>Downvotes:</strong>
-  <%= @post.downvotes %>
-</p>
+<div id="post_<%= @post.id %>_likes">
+  <%= render partial: "likes", locals: {post: @post} %>
+</div>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
