@@ -1,32 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Upvotes</th>
-      <th>Downvotes</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.body %></td>
-        <td><p id="post_<%= post.id %>_likes"><%= render partial: "likes", locals: {post: post} %></p></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><div id="post_<%= post.id %>_likes"><%= render partial: "likes", locals: {post: post} %></div></h6>
+          <p class="card-text"><%= post.body %></p>
+          <!-- <a href="#" class="card-link">Card link</a> -->
+          <!-- <a href="#" class="card-link">Another link</a> -->
+        </div>
+      </div>
+      <% if user_signed_in? %>
+        <%= link_to 'Show', post %> | 
+        <%= link_to 'Edit', edit_post_path(post) %> | 
+        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
-
 <br>
 
 <%= link_to 'New Post', new_post_path %>
