@@ -9,6 +9,8 @@ class Posts::LikesController < ApplicationController
         format.html { redirect_to @post }
         format.js
       end
+
+      redirect_to root_path
     end
   
     def destroy
@@ -18,6 +20,8 @@ class Posts::LikesController < ApplicationController
         format.html { redirect_to @post }
         format.js
       end
+      
+      redirect_to root_path
     end
   
     private
